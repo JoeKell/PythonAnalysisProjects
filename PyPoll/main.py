@@ -2,18 +2,12 @@
 import os
 import csv
 
-budget_csv = os.path.join("PyPoll", "Resources", "election_data.csv")
+election_csv = os.path.join("PyPoll", "Resources", "election_data.csv")
 
 #Initializing values for the results
-MonthCount=0
-Total=0
-PrevMonth=0
-AverageChange=0
-IncMonth=""
-DecMonth=""
-GreatestIncrease=0
-GreatestDecrease=0
-
+VoteCount=0
+Winner=""
+ElectionArray=[]
 
 # Open and read csv
 with open(election_csv) as csv_file:
@@ -23,22 +17,8 @@ with open(election_csv) as csv_file:
 
     # Read through each row of data after the header
     for row in csv_reader:
-        MonthCount+=1
-        Total+=int(row[1])
-        
-        if MonthCount>1:
-            Change=int(row[1])-PrevMonth
-            AverageChange+=Change
-            if Change>GreatestIncrease:
-                IncMonth=row[0]
-                GreatestIncrease=Change
-            if Change<GreatestDecrease:
-                DecMonth=row[0]
-                GreatestDecrease=Change
+        VoteCount+=1
 
-        PrevMonth=int(row[1])
-
-AverageChange=round(AverageChange/(MonthCount-1),2)
 
 #Print the results
 # print("Financial Analysis \n-------------------------")
@@ -51,8 +31,10 @@ AverageChange=round(AverageChange/(MonthCount-1),2)
 #Copy Data into a txt file
 results=open("PyPoll/analysis/results.txt","w")
 results.write("Election Results \n-------------------------\n")
-results.write(f"Total Months: {MonthCount}\n-------------------------\n")
-results.write(f"Total: ${Total}\n")
-results.write(f"Average Change: ${AverageChange}\n")
-results.write(f"Greatest Increase in Profits: {IncMonth} [${GreatestIncrease}]\n")
-results.write(f"Greatest Decrease in Profits: {DecMonth} [${GreatestDecrease}]")
+results.write(f"Total Votes: {VoteCount}\n-------------------------\n")
+for Candidate in ElectionArray:
+    results.write(f"{Candidate[0]}: {Candidate[1]}% [{Candidate[2]}]\n")
+
+results.write("-------------------------\n")
+results.write(f"Winner: {Winner}\n")
+results.write("-------------------------")
