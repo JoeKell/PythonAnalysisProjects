@@ -38,9 +38,15 @@ with open(budget_csv) as csv_file:
 
         PrevMonth=int(row[1])
 
+AverageChange=round(AverageChange/(MonthCount-1),2)
 
 #Print the results
-
+print("Financial Analysis \n-------------------------")
+print(f"Total Months: {MonthCount}")
+print(f"Total: ${Total}")
+print(f"Average Change: ${AverageChange}")
+print(f"Greatest Increase in Profits: {IncMonth} [${GreatestIncrease}]")
+print(f"Greatest Decrease in Profits: {DecMonth} [${GreatestDecrease}]")
 
 #Copy Data into a txt file
 results=open("PyBank/analysis/results.txt","w")
