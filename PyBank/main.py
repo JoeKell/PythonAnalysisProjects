@@ -9,6 +9,8 @@ MonthCount=0
 Total=0
 PrevMonth=0
 AverageChange=0
+IncMonth=""
+DecMonth=""
 GreatestIncrease=0
 GreatestDecrease=0
 
@@ -17,20 +19,24 @@ GreatestDecrease=0
 with open(budget_csv) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
 
+    csv_header = next(csv_file)
+
     # Read through each row of data after the header
     for row in csv_reader:
         MonthCount+=1
-        Total+=row[1]
+        Total+=int(row[1])
         
         if MonthCount>1:
-            Change=row[1]-PrevMonth
+            Change=int(row[1])-PrevMonth
             AverageChange+=Change
             if Change>GreatestIncrease:
+                IncMonth=row[0]
                 GreatestIncrease=Change
             if Change<GreatestDecrease:
+                DecMonth=row[0]
                 GreatestDecrease=Change
 
-        PrevMonth=row[1]
+        PrevMonth=int(row[1])
 
 
 #Print the results
@@ -38,9 +44,9 @@ with open(budget_csv) as csv_file:
 
 #Copy Data into a txt file
 results=open("PyBank/analysis/results.txt","w")
-results.write("Financial Analysis \n-------------------------")
-results.write("Total Months:")
-results.write(f"Total: ${Total}")
-results.write("Average Change:")
-results.write(f"Greatest Increase in Profits: {} [${}]")
-results.write(f"Greatest Decrease in Profits: {} [${}]")
+results.write("Financial Analysis \n-------------------------\n")
+results.write(f"Total Months: {MonthCount}\n")
+results.write(f"Total: ${Total}\n")
+results.write(f"Average Change: ${AverageChange}\n")
+results.write(f"Greatest Increase in Profits: {IncMonth} [${GreatestIncrease}]\n")
+results.write(f"Greatest Decrease in Profits: {DecMonth} [${GreatestDecrease}]")
