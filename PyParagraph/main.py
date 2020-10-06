@@ -2,11 +2,12 @@
 import os
 import re
 
-ParagraphIndex=3
-
 #The file the code reads from
+ParagraphIndex=3
 File = open(os.path.join("PyParagraph", "Resources", f"paragraph_{ParagraphIndex}.txt"),"r")
 Paragraph=File.read().replace("\n"," ").replace("  "," ")
+
+#Splitting the paragraph into sentences
 Sentences=re.split("(?<=[.!?]) +", Paragraph)
 ApproxSCount=len(Sentences)
 AvSLen=0
@@ -15,12 +16,19 @@ for Sentence in Sentences:
     AvSLen+=len(Sentence.split(" "))
     Words+=Sentence.split(" ")
 AvSLen=round(AvSLen/ApproxSCount,1)
-print(Words)
+ApproxWCount=len(Words)
+
+
+#for Word in Words:
+    
+
 
 
 #Printing with the desired format
 print("Paragraph Analysis\n----------------------")
-print(f"Approximate Word Count: ")
+print(f"Approximate Word Count: {ApproxWCount}")
 print(f"Approximate Sentence Count: {ApproxSCount}")
 print(f"Average Letter Count: ")
 print(f"Average Sentence Length: {AvSLen}")
+
+print("\n",Words)
