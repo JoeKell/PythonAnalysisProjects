@@ -1,8 +1,6 @@
 #All code designed to be run from the PythonAnalysisProjects folder. If you have file path issues, look there.
 import os
 import csv
-from decimal import *
-getcontext().prec = 4
 
 election_csv = os.path.join("PyPoll", "Resources", "election_data.csv")
 
@@ -36,12 +34,13 @@ for Tally in TallyArray:
 Winner=CandidateArray[TallyArray.index(max(TallyArray))]
 
 #Print the results
-# print("Financial Analysis \n-------------------------")
-# print(f"Total Months: {MonthCount}")
-# print(f"Total: ${Total}")
-# print(f"Average Change: ${AverageChange}")
-# print(f"Greatest Increase in Profits: {IncMonth} [${GreatestIncrease}]")
-# print(f"Greatest Decrease in Profits: {DecMonth} [${GreatestDecrease}]")
+print("Election Results \n-------------------------")
+print(f"Total Votes: {VoteCount}\n-------------------------")
+for i in range(len(CandidateArray)):
+    print(f"{CandidateArray[i]}: {PercentArray[i]}% [{TallyArray[i]}]")
+print("-------------------------")
+print(f"Winner: {Winner}")
+print("-------------------------")
 
 #Copy Data into a txt file
 results=open("PyPoll/analysis/results.txt","w")
