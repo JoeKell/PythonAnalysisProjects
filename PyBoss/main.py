@@ -4,6 +4,7 @@ import csv
 
 #The file the code reads from
 HR_csv = os.path.join("PyBoss", "Resources", "employee_data.csv")
+
 #The file the code writes to
 results=open("PyBoss/output/new_employee_data.csv","w")
 results.write("Emp ID,First Name,Last Name,DOB,SSN,State\n")
@@ -63,7 +64,6 @@ us_state_abbrev = {
     'Wyoming': 'WY',
 }
 
-
 # Open and read csv
 with open(HR_csv) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
@@ -79,13 +79,12 @@ with open(HR_csv) as csv_file:
         SSN=row[3].split("-")
         State=row[4]
 
-
-        #Convert the data
-# StringTEst="abcdefghijklmnopqrstuvwxyz"
-# print(StringTEst.split("l"))
-# print(StringTEst[-4:])
-
-
         #Write the data results.write
-#results.write("214,Sarah,Simpson,12/04/1985,***-**-8166,FL\n")
+        #results.write("214,Sarah,Simpson,12/04/1985,***-**-8166,FL\n")
+        results.write(f"{EmpID},")
+        results.write(f"{Name[0]},")
+        results.write(f"{Name[1]},")
+        results.write(f"{DOB[1]}/{DOB[2]}/{DOB[0]},")
+        results.write(f"***-**-{SSN[2]},")
+        results.write(f"{us_state_abbrev[State]}\n")
 
