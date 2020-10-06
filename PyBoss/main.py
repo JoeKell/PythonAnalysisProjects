@@ -6,7 +6,8 @@ import csv
 HR_csv = os.path.join("PyBoss", "Resources", "employee_data.csv")
 #The file the code writes to
 results=open("PyBoss/output/new_employee_data.csv","w")
-results.write("Emp ID,First Name,Last Name,DOB,SSN,State")
+results.write("Emp ID,First Name,Last Name,DOB,SSN,State\n")
+
 
 #Imported from https://gist.github.com/afhaque/29f0f4f37463c447770517a6c17d08f5
 us_state_abbrev = {
@@ -73,9 +74,9 @@ with open(HR_csv) as csv_file:
     for row in csv_reader:
         #Gather all of the old data
         EmpID=row[0]
-        FullName=row[1]
-        DOB1=row[2]
-        SSN1=row[3]
+        Name=row[1].split(" ")
+        DOB=row[2].split("-")
+        SSN=row[3].split("-")
         State=row[4]
 
 
@@ -86,5 +87,5 @@ with open(HR_csv) as csv_file:
 
 
         #Write the data results.write
-
+#results.write("214,Sarah,Simpson,12/04/1985,***-**-8166,FL\n")
 
