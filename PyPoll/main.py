@@ -1,6 +1,8 @@
 #All code designed to be run from the PythonAnalysisProjects folder. If you have file path issues, look there.
 import os
 import csv
+from decimal import *
+getcontext().prec = 4
 
 election_csv = os.path.join("PyPoll", "Resources", "election_data.csv")
 
@@ -26,8 +28,12 @@ with open(election_csv) as csv_file:
             CandidateArray.append(row[2])
             TallyArray.append(1)
 
+#Assign percents
 for Tally in TallyArray:
-    PercentArray.append(round(Tally/VoteCount*100,5))
+    PercentArray.append('%.3f'%((Tally*100)/VoteCount))   
+
+#Find the Winner
+Winner=CandidateArray[TallyArray.index(max(TallyArray))]
 
 #Print the results
 # print("Financial Analysis \n-------------------------")
