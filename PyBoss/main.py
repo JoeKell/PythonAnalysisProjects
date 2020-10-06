@@ -1,8 +1,14 @@
-StringTEst="abcdefghijklmnopqrstuvwxyz"
-print(StringTEst.split("l"))
-print(StringTEst[-4:])
+#All code designed to be run from the PythonAnalysisProjects folder. If you have file path issues, look there.
+import os
+import csv
 
+#The file the code reads from
+HR_csv = os.path.join("PyBoss", "Resources", "employee_data.csv")
+#The file the code writes to
+results=open("PyBoss/output/new_employee_data.csv","w")
+results.write("Emp ID,First Name,Last Name,DOB,SSN,State")
 
+#Imported from https://gist.github.com/afhaque/29f0f4f37463c447770517a6c17d08f5
 us_state_abbrev = {
     'Alabama': 'AL',
     'Alaska': 'AK',
@@ -55,3 +61,30 @@ us_state_abbrev = {
     'Wisconsin': 'WI',
     'Wyoming': 'WY',
 }
+
+
+# Open and read csv
+with open(HR_csv) as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=",")
+    #Skip the header
+    csv_header = next(csv_file)
+
+    # Read through each row of data after the header
+    for row in csv_reader:
+        #Gather all of the old data
+        EmpID=row[0]
+        FullName=row[1]
+        DOB1=row[2]
+        SSN1=row[3]
+        State=row[4]
+
+
+        #Convert the data
+# StringTEst="abcdefghijklmnopqrstuvwxyz"
+# print(StringTEst.split("l"))
+# print(StringTEst[-4:])
+
+
+        #Write the data results.write
+
+
