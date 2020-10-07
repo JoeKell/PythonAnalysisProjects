@@ -20,27 +20,18 @@ for Sentence in Sentences:
 AvSLen=round(AvSLen/ApproxSCount,1)
 ApproxWCount=len(Words)
 
-#This is to make average word length more accurate. Removing special chars with translate
-CharacterLibrary=[]
-for i in range(33,48):
-    CharacterLibrary.append(chr(i))
-for i in range(58,65):
-    CharacterLibrary.append(chr(i))
-for i in range(91,97):
-    CharacterLibrary.append(chr(i))
-for i in range(123,127):
-    CharacterLibrary.append(chr(i))
-print(CharacterLibrary)
-#for Word in Words:
-
+#This removes any spectial characters when determining the average length of a word.
+AvWLen=0
+for i in range(len(Words)):
+    Words[i]=''.join(letter for letter in Words[i] if letter.isalnum())
+    AvWLen+=len(Words[i])
+AvWLen=round(AvWLen/ApproxWCount,1)
 
 
 
 #Printing with the desired format
-print("Paragraph Analysis\n----------------------")
+print("\nParagraph Analysis\n----------------------")
 print(f"Approximate Word Count: {ApproxWCount}")
 print(f"Approximate Sentence Count: {ApproxSCount}")
-print(f"Average Letter Count: ")
+print(f"Average Letter Count: {AvWLen}")
 print(f"Average Sentence Length: {AvSLen}")
-
-#print("\n",Words)
