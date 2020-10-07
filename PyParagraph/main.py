@@ -2,8 +2,8 @@
 import os
 import re
 
-#The file the code reads from
-ParagraphIndex=3
+#The file the code reads from. Choose a Paragraph Index between 1 and 3 to determine which is used.
+ParagraphIndex=1
 File = open(os.path.join("PyParagraph", "Resources", f"paragraph_{ParagraphIndex}.txt"),"r")
 Paragraph=File.read().replace("\n"," ").replace("  "," ")
 
@@ -26,8 +26,6 @@ for i in range(len(Words)):
     Words[i]=''.join(letter for letter in Words[i] if letter.isalnum())
     AvWLen+=len(Words[i])
 AvWLen=round(AvWLen/ApproxWCount,1)
-
-
 
 #Printing with the desired format
 print("\nParagraph Analysis\n----------------------")
